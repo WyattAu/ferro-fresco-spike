@@ -1,0 +1,36 @@
+[package]
+name = "ferro-fresco-spike"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "R9 spike: Ferro file-manager screens on the fresco UI engine — measured gap list for the estate plan"
+publish = false
+
+[lib]
+name = "ferro_fresco_spike"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ferro-fresco-spike"
+path = "src/main.rs"
+
+[[bin]]
+name = "live-probe"
+path = "src/bin/live-probe.rs"
+required-features = ["live"]
+
+[dependencies]
+widget-kit = { path = "../fresco/crates/widget-kit" }
+scene-kit = { path = "../fresco/crates/scene-kit" }
+layout-kit = { path = "../fresco/crates/layout-kit" }
+paint-kit = { path = "../fresco/crates/paint-kit" }
+render-conformance = { path = "../fresco/crates/render-conformance" }
+ui-text-edit = "0.1"
+
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"], optional = true }
+serde_json = { version = "1", optional = true }
+base64 = { version = "0.22", optional = true }
+
+[features]
+default = []
+live = ["dep:reqwest", "dep:serde_json", "dep:base64"]
